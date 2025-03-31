@@ -159,7 +159,7 @@ namespace KinematicCharacterController
                 KinematicCharacterMotor motor = CharacterMotors[i];
 
                 motor.InitialTickPosition = motor.TransientPosition;
-                motor.InitialTickRotation = motor.TransientRotation;
+                motor.InitialTickRotation = motor.TransientRotation.normalized;
 
                 motor.Transform.SetPositionAndRotation(motor.TransientPosition, motor.TransientRotation);
             }
@@ -169,11 +169,11 @@ namespace KinematicCharacterController
                 PhysicsMover mover = PhysicsMovers[i];
 
                 mover.InitialTickPosition = mover.TransientPosition;
-                mover.InitialTickRotation = mover.TransientRotation;
+                mover.InitialTickRotation = mover.TransientRotation.normalized;
 
                 mover.Transform.SetPositionAndRotation(mover.TransientPosition, mover.TransientRotation);
                 mover.Rigidbody.position = mover.TransientPosition;
-                mover.Rigidbody.rotation = mover.TransientRotation;
+                mover.Rigidbody.rotation = mover.TransientRotation.normalized;
             }
         }
 
@@ -246,12 +246,12 @@ namespace KinematicCharacterController
                     mover.Rigidbody.rotation = mover.InitialTickRotation.normalized;
 
                     mover.Rigidbody.MovePosition(mover.TransientPosition);
-                    mover.Rigidbody.MoveRotation(mover.TransientRotation);
+                    mover.Rigidbody.MoveRotation(mover.TransientRotation.normalized);
                 }
                 else
                 {
                     mover.Rigidbody.position = (mover.TransientPosition);
-                    mover.Rigidbody.rotation = (mover.TransientRotation);
+                    mover.Rigidbody.rotation = (mover.TransientRotation.normalized);
                 }
             }
         }
