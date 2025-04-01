@@ -20,6 +20,8 @@ public class CameraBoundaryController : MonoBehaviour
 
     private void AreaTriggered(CameraBoundaryArea area)
     {
+        // Debug.Log("Transitioning to " + area.name);
+
         this.Camera.transform.position = area.CameraTransform.position;
         this.Camera.transform.rotation = area.CameraTransform.rotation;
     }
