@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,9 +10,13 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField]
     private VideoPlayer VideoPlayer;
+    [SerializeField]
+    private PlayerInput PlayerInput;
 
     [SerializeField]
     private Canvas Canvas;
+    [SerializeField]
+    private EventSystem EventSystem;
     [SerializeField]
     private Button PlayButton;
     [SerializeField]
@@ -19,12 +25,14 @@ public class MainMenuController : MonoBehaviour
     private Button QuitButton;
 
     private bool _videoPlaying = true;
+    private string _currentControlScheme;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.VideoPlayer.loopPointReached += this.VideoEnded;
 
+        this._currentControlScheme = this.PlayerInput.currentControlScheme;
         this.Canvas.enabled = false;
 
         this.PlayButton.onClick.AddListener(this.PlayGame);
@@ -35,7 +43,20 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (this.PlayerInput.currentControlScheme != this._currentControlScheme)
+        {
+            this._currentControlScheme = this.PlayerInput.currentControlScheme;
+            if (this._currentControlScheme != "Keyboard&Mouse")
+            {
+                if (this.Canvas.enabled)
+                {
+                    this.EventSystem.SetSelectedGameObject(this.PlayButton.gameObject);
+                }
+            } else
+            {
+                this.EventSystem.SetSelectedGameObject(null);
+            }
+        }
     }
      
     private void VideoEnded(VideoPlayer source)
@@ -43,10 +64,19 @@ public class MainMenuController : MonoBehaviour
         if (this._videoPlaying)
         {
             this.VideoPlayer.gameObject.SetActive(false);
+
             this.Canvas.enabled = true;
+            this.StartCoroutine(this.DelayCanvas());
 
             this._videoPlaying = false;
         }
+    }
+
+    private IEnumerator DelayCanvas()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        this.EventSystem.SetSelectedGameObject(this.PlayButton.gameObject);
     }
 
     private void PlayGame()
@@ -56,7 +86,6 @@ public class MainMenuController : MonoBehaviour
 
     private void ShowSettings()
     {
-
     }
 
     private void Quit()

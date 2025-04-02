@@ -20,6 +20,12 @@ namespace KinematicCharacterController.Examples
 
         private PlayerCharacterInputs _characterInputs = new PlayerCharacterInputs();
 
+        private void Awake()
+        {
+            this._characterInputs.CrouchDown = false;
+            this._characterInputs.CrouchUp = true;
+        }
+
         private void Update()
         {
             HandleCharacterInput();
@@ -41,7 +47,11 @@ namespace KinematicCharacterController.Examples
         }
         public void OnCrouch(InputValue value)
         {
-            this._characterInputs.CrouchDown = value.Get<float>() > 0.5f;
+            if (value.Get<float>() > 0.5f)
+            {
+                this._characterInputs.CrouchDown = !this._characterInputs.CrouchDown;
+                this._characterInputs.CrouchUp = !this._characterInputs.CrouchUp;
+            }
         }
         public void OnMove(InputValue value)
         {
