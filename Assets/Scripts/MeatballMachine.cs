@@ -4,10 +4,10 @@ public class MeatballMachine : MonoBehaviour
 {
     [SerializeField]
     private GameObject Meatball;
-
     [SerializeField]
     private Collider DropZone;
-
+    [SerializeField]
+    private Vector3 StartForce;
     [SerializeField]
     private float DropRateSeconds = 0.1f;
 
@@ -44,6 +44,7 @@ public class MeatballMachine : MonoBehaviour
         var randPosition = this.GetRandomPointWithinCollider(this.DropZone);
         newMeatball.transform.position = randPosition;
         newMeatball.SetActive(true);
+        newMeatball.GetComponent<Rigidbody>().AddForce(this.StartForce, ForceMode.Impulse);
     }
 
 

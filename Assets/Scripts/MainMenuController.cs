@@ -18,7 +18,9 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     private EventSystem EventSystem;
     [SerializeField]
-    private Button PlayButton;
+    private Button PlaygroundButton;
+    [SerializeField]
+    private Button MeatballsButton;
     [SerializeField]
     private Button SettingsButton;
     [SerializeField]
@@ -35,7 +37,8 @@ public class MainMenuController : MonoBehaviour
         this._currentControlScheme = this.PlayerInput.currentControlScheme;
         this.Canvas.enabled = false;
 
-        this.PlayButton.onClick.AddListener(this.PlayGame);
+        this.PlaygroundButton.onClick.AddListener(this.PlayGame);
+        this.MeatballsButton.onClick.AddListener(this.LoadMeatballMinigame);
         this.SettingsButton.onClick.AddListener(this.ShowSettings);
         this.QuitButton.onClick.AddListener(this.Quit);
     }
@@ -50,7 +53,7 @@ public class MainMenuController : MonoBehaviour
             {
                 if (this.Canvas.enabled)
                 {
-                    this.EventSystem.SetSelectedGameObject(this.PlayButton.gameObject);
+                    this.EventSystem.SetSelectedGameObject(this.PlaygroundButton.gameObject);
                 }
             } else
             {
@@ -76,12 +79,16 @@ public class MainMenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        this.EventSystem.SetSelectedGameObject(this.PlayButton.gameObject);
+        this.EventSystem.SetSelectedGameObject(this.PlaygroundButton.gameObject);
     }
 
     private void PlayGame()
     {
         SceneManager.LoadScene("Playground");
+    }
+    private void LoadMeatballMinigame()
+    {
+        SceneManager.LoadScene("Meatballs");
     }
 
     private void ShowSettings()

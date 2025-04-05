@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using KinematicCharacterController;
-using KinematicCharacterController.Examples;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace KinematicCharacterController.Examples
@@ -36,7 +32,7 @@ namespace KinematicCharacterController.Examples
             this._characterInputs.CameraRotation = this.CharacterCamera.transform.rotation;
 
             // Apply inputs to character
-            Character.SetInputs(ref this._characterInputs);
+            this.Character.SetInputs(ref this._characterInputs);
 
             this._characterInputs.JumpDown = false;
         }
