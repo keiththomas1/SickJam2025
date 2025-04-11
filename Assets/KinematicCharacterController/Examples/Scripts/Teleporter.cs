@@ -10,7 +10,7 @@ namespace KinematicCharacterController.Examples
     {
         public Teleporter TeleportTo;
 
-        public UnityAction<ExampleCharacterController> OnCharacterTeleport;
+        public UnityAction<SickCharacterController> OnCharacterTeleport;
 
         public bool isBeingTeleportedTo { get; set; }
 
@@ -18,7 +18,7 @@ namespace KinematicCharacterController.Examples
         {
             if (!isBeingTeleportedTo)
             {
-                ExampleCharacterController cc = other.GetComponent<ExampleCharacterController>();
+                SickCharacterController cc = other.GetComponent<SickCharacterController>();
                 if (cc)
                 {
                     cc.Motor.SetPositionAndRotation(TeleportTo.transform.position, TeleportTo.transform.rotation);

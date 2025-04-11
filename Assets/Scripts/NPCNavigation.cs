@@ -7,7 +7,7 @@ public class NPCNavigation : MonoBehaviour
 {
     [Header("References")]
     public Transform destination;
-    public ExampleCharacterController Character;
+    public SickCharacterController Character;
     public Camera CharacterCamera;
 
     [Header("Navigation Settings")]

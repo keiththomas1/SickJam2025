@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -18,13 +17,28 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     private EventSystem EventSystem;
     [SerializeField]
-    private Button PlaygroundButton;
-    [SerializeField]
-    private Button MeatballsButton;
+    private Button PlayGameButton;
     [SerializeField]
     private Button SettingsButton;
     [SerializeField]
     private Button QuitButton;
+
+    // Debug
+    [SerializeField]
+    private GameObject DebugGroup;
+    [SerializeField]
+    private Button SpatulasButton;
+    [SerializeField]
+    private Button MeatballsButton;
+    [SerializeField]
+    private Button GreaseFryersButton;
+    [SerializeField]
+    private Button SodaMountainButton;
+    [SerializeField]
+    private Button BurgerSmashButton;
+
+    [SerializeField]
+    private ContestController ContestController;
 
     private bool _videoPlaying = true;
     private string _currentControlScheme;
@@ -37,10 +51,20 @@ public class MainMenuController : MonoBehaviour
         this._currentControlScheme = this.PlayerInput.currentControlScheme;
         this.Canvas.enabled = false;
 
-        this.PlaygroundButton.onClick.AddListener(this.PlayGame);
-        this.MeatballsButton.onClick.AddListener(this.LoadMeatballMinigame);
+        this.PlayGameButton.onClick.AddListener(() => { this.ContestController.SetupGames(); });
         this.SettingsButton.onClick.AddListener(this.ShowSettings);
         this.QuitButton.onClick.AddListener(this.Quit);
+
+#if UNITY_EDITOR 
+        this.DebugGroup.SetActive(true);
+        this.SpatulasButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.Spatulas); });
+        this.MeatballsButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.Meatballs); });
+        this.GreaseFryersButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.GreaseFryers); });
+        this.SodaMountainButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.SodaMountain); });
+        this.BurgerSmashButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.BurgerSmash); });
+#else
+        this.DebugGroup.SetActive(false);
+#endif
     }
 
     // Update is called once per frame
@@ -53,7 +77,7 @@ public class MainMenuController : MonoBehaviour
             {
                 if (this.Canvas.enabled)
                 {
-                    this.EventSystem.SetSelectedGameObject(this.PlaygroundButton.gameObject);
+                    this.EventSystem.SetSelectedGameObject(this.PlayGameButton.gameObject);
                 }
             } else
             {
@@ -79,16 +103,7 @@ public class MainMenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        this.EventSystem.SetSelectedGameObject(this.PlaygroundButton.gameObject);
-    }
-
-    private void PlayGame()
-    {
-        SceneManager.LoadScene("Playground");
-    }
-    private void LoadMeatballMinigame()
-    {
-        SceneManager.LoadScene("Meatballs");
+        this.EventSystem.SetSelectedGameObject(this.PlayGameButton.gameObject);
     }
 
     private void ShowSettings()

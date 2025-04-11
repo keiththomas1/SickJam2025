@@ -35,7 +35,7 @@ public class Meatball : MonoBehaviour
             // Debug.LogWarning(velocityTowardsCollision);
             // velocityTowardsCollision = Mathf.Max(1f, velocityTowardsCollision);
 
-            collision.gameObject.GetComponent<ExampleCharacterController>().AddVelocity(collisionNormal * this.ForceMultiplier); // * velocityTowardsCollision );
+            collision.gameObject.GetComponent<SickCharacterController>().AddVelocity(collisionNormal * this.ForceMultiplier); // * velocityTowardsCollision );
         }
     }
 }

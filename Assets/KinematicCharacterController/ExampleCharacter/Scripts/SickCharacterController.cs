@@ -40,7 +40,7 @@ namespace KinematicCharacterController.Examples
         TowardsGroundSlopeAndGravity,
     }
 
-    public class ExampleCharacterController : MonoBehaviour, ICharacterController
+    public class SickCharacterController : MonoBehaviour, ICharacterController
     {
         public KinematicCharacterMotor Motor;
 
@@ -88,6 +88,8 @@ namespace KinematicCharacterController.Examples
 
         private Vector3 lastInnerNormal = Vector3.zero;
         private Vector3 lastOuterNormal = Vector3.zero;
+
+        public bool CanMove { get; set; } = true;
 
         private void Awake()
         {
@@ -142,6 +144,8 @@ namespace KinematicCharacterController.Examples
         /// </summary>
         public void SetInputs(ref PlayerCharacterInputs inputs)
         {
+            if (!this.CanMove) return;
+            
             // Clamp input
             Vector3 moveInputVector = Vector3.ClampMagnitude(new Vector3(inputs.MoveAxisRight, 0f, inputs.MoveAxisForward), 1f);
 
