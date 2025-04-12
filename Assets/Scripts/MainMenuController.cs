@@ -32,13 +32,6 @@ public class MainMenuController : MonoBehaviour
     private Button MeatballsButton;
     [SerializeField]
     private Button GreaseFryersButton;
-    [SerializeField]
-    private Button SodaMountainButton;
-    [SerializeField]
-    private Button BurgerSmashButton;
-
-    [SerializeField]
-    private ContestController ContestController;
 
     private bool _videoPlaying = true;
     private string _currentControlScheme;
@@ -51,17 +44,15 @@ public class MainMenuController : MonoBehaviour
         this._currentControlScheme = this.PlayerInput.currentControlScheme;
         this.Canvas.enabled = false;
 
-        this.PlayGameButton.onClick.AddListener(() => { this.ContestController.SetupGames(); });
+        this.PlayGameButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(); });
         this.SettingsButton.onClick.AddListener(this.ShowSettings);
         this.QuitButton.onClick.AddListener(this.Quit);
 
 #if UNITY_EDITOR 
         this.DebugGroup.SetActive(true);
-        this.SpatulasButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.Spatulas); });
-        this.MeatballsButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.Meatballs); });
-        this.GreaseFryersButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.GreaseFryers); });
-        this.SodaMountainButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.SodaMountain); });
-        this.BurgerSmashButton.onClick.AddListener(() => { this.ContestController.SetupGames(MinigameType.BurgerSmash); });
+        this.SpatulasButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.Spatulas); });
+        this.MeatballsButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.Meatballs); });
+        this.GreaseFryersButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.GreaseFryers); });
 #else
         this.DebugGroup.SetActive(false);
 #endif

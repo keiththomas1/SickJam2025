@@ -5,8 +5,6 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class NPCNavigation : MonoBehaviour
 {
-    [Header("References")]
-    public Transform destination;
     public SickCharacterController Character;
     public Camera CharacterCamera;
 
@@ -25,6 +23,11 @@ public class NPCNavigation : MonoBehaviour
     private const float JUMP_DELAY_MIN = 1f;
     private const float JUMP_DELAY_MAX = 6f;
     private float _jumpTimer = 0f;
+
+    public Transform Destination
+    {
+        get; set;
+    }
 
     void Start()
     {
@@ -83,11 +86,11 @@ public class NPCNavigation : MonoBehaviour
 
     void CalculateNewPath()
     {
-        if (destination == null)
+        if (this.Destination == null)
             return;
 
         // Calculate path from current position to destination
-        NavMesh.CalculatePath(transform.position, destination.position, NavMesh.AllAreas, path);
+        NavMesh.CalculatePath(transform.position, this.Destination.position, NavMesh.AllAreas, path);
         if (path.corners.Length >= 2)
         {
             path.corners[1] = path.corners[1] + Random.insideUnitSphere;
@@ -102,7 +105,7 @@ public class NPCNavigation : MonoBehaviour
         this._characterInputs.MoveAxisRight = 0f;
 
         // If no path or destination, return
-        if (path.corners.Length < 2 || destination == null)
+        if (path.corners.Length < 2 || this.Destination == null)
             return;
 
         // Get the next point in the path
