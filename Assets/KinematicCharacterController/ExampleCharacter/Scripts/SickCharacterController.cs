@@ -89,6 +89,7 @@ namespace KinematicCharacterController.Examples
         private Vector3 lastInnerNormal = Vector3.zero;
         private Vector3 lastOuterNormal = Vector3.zero;
 
+        public bool IsNPC { get; set; } = false;
         public bool CanMove { get; set; } = true;
 
         private void Awake()
@@ -366,6 +367,13 @@ namespace KinematicCharacterController.Examples
                                 if (Motor.GroundingStatus.FoundAnyGround && !Motor.GroundingStatus.IsStableOnGround)
                                 {
                                     jumpDirection = Motor.GroundingStatus.GroundNormal;
+                                }
+
+                                var volume = this.IsNPC ? 0.7f : 1f;
+                                var pitch = this.IsNPC ? 0.75f : 1f;
+                                if (AudioController.Instance != null)
+                                {
+                                    AudioController.Instance.LoadNewSFXAndPlay("Jump", null, volume, pitch);
                                 }
 
                                 // Makes the character skip ground probing/snapping on its next update. 

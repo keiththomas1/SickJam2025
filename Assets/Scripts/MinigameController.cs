@@ -93,7 +93,10 @@ public class MinigameController : MonoBehaviour
             character.CanMove = true;
         }
 
-        MusicController.Instance.FadeInMusic(this.MinigameMusic, 1f, 3f);
+        if (MusicController.Instance != null)
+        {
+            MusicController.Instance.PlayMusic(this.MinigameMusic, 0.7f);
+        }
     }
 
     private void CharacterFinished(Collider collider)

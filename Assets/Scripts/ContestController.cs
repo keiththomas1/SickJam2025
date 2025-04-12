@@ -12,10 +12,11 @@ public enum MinigameType
     None
 }
 
+// Execute before other scripts so it has a better chance of being initialized for
+// start-up music/sfx.
+[DefaultExecutionOrder(-100)]
 public class ContestController : MonoBehaviour
 {
-    public static ContestController Instance;
-
     private MinigameController _currentMinigame;
     private GameObject _countdown;
     private GameObject _finishText;
@@ -25,6 +26,19 @@ public class ContestController : MonoBehaviour
     private int _npcsRemaining;
     private List<MinigameType> _gameQueue;
 
+    public static ContestController Instance
+    {
+        get
+        {
+            if (!_instance)
+            {
+                Debug.LogWarning("Trying to access ContestController before Awake()");
+            }
+            return _instance;
+        }
+    }
+    private static ContestController _instance = null;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -33,7 +47,7 @@ public class ContestController : MonoBehaviour
             return;
         }
 
-        Instance = this;
+        _instance = this;
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += this.SceneLoaded;
@@ -46,6 +60,7 @@ public class ContestController : MonoBehaviour
         if (this._currentMinigame != null)
         {
             this._currentMinigame.PrepareGame(this._npcsRemaining, this._npcsRemaining / 2);
+            this._currentMinigame.OnCharacterFinished.AddListener(this.CharacterFinished);
             this._currentMinigame.OnAllFinished.AddListener(this.ShowFinishedScreen);
 
             this._countdown = Instantiate(Resources.Load("CountdownText") as GameObject);
@@ -70,6 +85,14 @@ public class ContestController : MonoBehaviour
         this.LoadNextMinigame(optionalStartGame);
     }
 
+    private void CharacterFinished(string name)
+    {
+        if (name == "Player")
+        {
+            AudioController.Instance.LoadNewSFXAndPlay("Win", null, 1f);
+        }
+    }
+
     private void ShowFinishedScreen()
     {
         this._finishText = GameObject.Instantiate(Resources.Load("FinishText") as GameObject);
@@ -79,6 +102,7 @@ public class ContestController : MonoBehaviour
             this._finishText.GetComponent<FinishText>().SetText("Finish!");
         } else
         {
+            AudioController.Instance.LoadNewSFXAndPlay("Lose", null, 1f);
             this._finishText.GetComponent<FinishText>().SetText("Fail!");
         }
 
@@ -88,6 +112,8 @@ public class ContestController : MonoBehaviour
     private IEnumerator ContinueAfterDelay(bool playerFinished, float seconds)
     {
         yield return new WaitForSeconds(seconds);
+
+        MusicController.Instance.FadeOutCurrentMusic(1f);
 
         if (playerFinished)
         {

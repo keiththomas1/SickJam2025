@@ -38,8 +38,8 @@ public class AudioController : MonoBehaviour
 
     private const float DEFAULT_VOLUME_LEVEL = 0.75f;
     private const float DEFAULT_FALLOFF_DISTANCE = 25f;
-    private const string AMBIENT_PATH = "Audio/Ambient";
-    private const string SFX_PATH = "Audio/SFX";
+    private const string AMBIENT_PATH = "Audio/";
+    private const string SFX_PATH = "Audio/";
 
     private AudioSource _currentWeatherAmbience = null;
 
@@ -69,6 +69,7 @@ public class AudioController : MonoBehaviour
             Debug.LogError("Multiple instances of AudioController defined, there should only be one.");
         }
         _instance = this;
+        DontDestroyOnLoad(gameObject);
 
         this._pooledSFXSources = new GenericPool(this.DefaultAudioSource.gameObject, this.PlayingSFX, SFX_POOL_SIZE);
     }
@@ -162,7 +163,7 @@ public class AudioController : MonoBehaviour
     // SFX
 
     public AudioSource LoadNewSFXAndPlay(
-        string clipName, Vector3? position, float volumeLevel = DEFAULT_VOLUME_LEVEL, bool looping = false)
+        string clipName, Vector3? position, float volumeLevel = DEFAULT_VOLUME_LEVEL, float pitch = 1.0f, bool looping = false)
     {
         if (clipName == string.Empty)
         {
@@ -170,11 +171,11 @@ public class AudioController : MonoBehaviour
         }
 
         var audioClip = Resources.Load<AudioClip>(Path.Join(SFX_PATH, clipName));
-        return this.CreateNewSFXAndPlay(audioClip, position, volumeLevel, looping);
+        return this.CreateNewSFXAndPlay(audioClip, position, volumeLevel, pitch, looping);
     }
 
     public AudioSource CreateNewSFXAndPlay(
-        AudioClip audioClip, Vector3? position, float volumeLevel = DEFAULT_VOLUME_LEVEL, bool looping = false)
+        AudioClip audioClip, Vector3? position, float volumeLevel = DEFAULT_VOLUME_LEVEL, float pitch = 1.0f, bool looping = false)
     {
         if (audioClip == null)
         {
@@ -182,7 +183,7 @@ public class AudioController : MonoBehaviour
         }
 
         var audioSource = this.SetupAudioSource(audioClip, this.GetSFXVolume(volumeLevel), looping, AudioType.SFX, position);
-        audioSource.pitch = UnityEngine.Random.Range(0.95f, 1.05f); // Adds a bit of variance on each sound for sounds that are played often.
+        audioSource.pitch = UnityEngine.Random.Range(pitch - 0.05f, pitch + 0.05f); // Adds a bit of variance on each sound for sounds that are played often.
 
         // TODO: Set up a system where this event will change the volume of the audio source but when the audio source is destroyed (maybe a custom script that lives on all
         //      audio sources, then this listener is removed) and same with music/ambient

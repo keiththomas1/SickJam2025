@@ -46,6 +46,8 @@ public class NPCNavigation : MonoBehaviour
             }
         }
 
+        this.Character.IsNPC = true;
+
         this._characterInputs.CrouchDown = false;
         this._characterInputs.CrouchUp = true;
 

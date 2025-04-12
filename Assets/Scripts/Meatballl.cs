@@ -1,5 +1,6 @@
 using KinematicCharacterController.Examples;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Meatball : MonoBehaviour
 {
@@ -36,6 +37,14 @@ public class Meatball : MonoBehaviour
             // velocityTowardsCollision = Mathf.Max(1f, velocityTowardsCollision);
 
             collision.gameObject.GetComponent<SickCharacterController>().AddVelocity(collisionNormal * this.ForceMultiplier); // * velocityTowardsCollision );
+
+            if (collision.gameObject.name == "Player")
+            {
+                if (AudioController.Instance != null)
+                {
+                    AudioController.Instance.LoadNewSFXAndPlay("Hit_loud", null, 0.8f);
+                }
+            }
         }
     }
 }

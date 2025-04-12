@@ -44,11 +44,20 @@ public class MainMenuController : MonoBehaviour
         this._currentControlScheme = this.PlayerInput.currentControlScheme;
         this.Canvas.enabled = false;
 
+        if (AudioController.Instance == null)
+        {
+            GameObject.Instantiate(Resources.Load("AudioController") as GameObject);
+        }
+        if (ContestController.Instance == null)
+        {
+            GameObject.Instantiate(Resources.Load("ContestController") as GameObject);
+        }
+
         this.PlayGameButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(); });
         this.SettingsButton.onClick.AddListener(this.ShowSettings);
         this.QuitButton.onClick.AddListener(this.Quit);
 
-#if UNITY_EDITOR 
+#if UNITY_EDITOR
         this.DebugGroup.SetActive(true);
         this.SpatulasButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.Spatulas); });
         this.MeatballsButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.Meatballs); });

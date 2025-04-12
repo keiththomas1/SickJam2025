@@ -43,6 +43,7 @@ public class MusicController : MonoBehaviour
         audioSource.GetComponent<AudioInfo>().DefaultVolume = volume;
 
         var actualVolume = AudioController.Instance.GetMusicVolume(volume);
+        Debug.Log(actualVolume);
 
         // Need to set it again in onComplete in case MasterVolume changed during fade.
         // this._currentSequence.Insert(0, audioSource.DOFade(actualVolume, fadeTime).OnComplete(() => audioSource.volume = AudioController.Instance.GetMusicVolume(volume)));
@@ -59,5 +60,21 @@ public class MusicController : MonoBehaviour
         audioSource.DOFade(0f, fadeTime);
 
         this._currentPlayingAudio = null;
+    }
+
+    public void PlayMusic(AudioClip audioClip, float volume)
+    {
+        var actualVolume = AudioController.Instance.GetMusicVolume(volume);
+
+        AudioSource audioSource = AudioController.Instance.CreateNewMusicAndPlay(audioClip, actualVolume, true);
+        audioSource.Play();
+        audioSource.GetComponent<AudioInfo>().DefaultVolume = volume;
+
+        Debug.Log(actualVolume);
+
+        // Need to set it again in onComplete in case MasterVolume changed during fade.
+        // this._currentSequence.Insert(0, audioSource.DOFade(actualVolume, fadeTime).OnComplete(() => audioSource.volume = AudioController.Instance.GetMusicVolume(volume)));
+
+        this._currentPlayingAudio = audioSource;
     }
 }
