@@ -23,7 +23,7 @@ public class CountdownText : MonoBehaviour
     }
     private void ShowStart()
     {
-        this.Text.text = "Start!";
+        this.Text.text = "START!";
         this.OnFinished.Invoke();
     }
 }
