@@ -108,6 +108,11 @@ public class MinigameController : MonoBehaviour
 
         if (collider.GetComponent<SickCharacterController>() == this.Player)
         {
+            if (this._playerFinished) // Player left zone and returned which shouldn't trigger a finish
+            {
+                return;
+            }
+
             this._playerFinished = true;
         }
 
