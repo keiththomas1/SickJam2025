@@ -1,6 +1,5 @@
 using KinematicCharacterController.Examples;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class Meatball : MonoBehaviour
 {
@@ -8,16 +7,6 @@ public class Meatball : MonoBehaviour
     private Rigidbody Rigidbody;
     [SerializeField]
     private float ForceMultiplier = 10f;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
