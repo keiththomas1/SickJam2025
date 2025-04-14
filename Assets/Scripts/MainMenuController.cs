@@ -17,11 +17,22 @@ public class MainMenuController : MonoBehaviour
     [SerializeField]
     private EventSystem EventSystem;
     [SerializeField]
+    private GameObject MainMenuButtons;
+    [SerializeField]
     private Button PlayGameButton;
     [SerializeField]
     private Button SettingsButton;
     [SerializeField]
     private Button QuitButton;
+
+    [SerializeField]
+    private GameObject Settings;
+    [SerializeField]
+    private Slider MusicSlider;
+    [SerializeField]
+    private Slider SfxSlider;
+    [SerializeField]
+    private Button SettingsBackButton;
 
     // Debug
     [SerializeField]
@@ -44,6 +55,8 @@ public class MainMenuController : MonoBehaviour
         this._currentControlScheme = this.PlayerInput.currentControlScheme;
         this.Canvas.enabled = false;
 
+        this._videoPlaying = true;
+
         if (AudioController.Instance == null)
         {
             GameObject.Instantiate(Resources.Load("AudioController") as GameObject);
@@ -57,6 +70,10 @@ public class MainMenuController : MonoBehaviour
         this.SettingsButton.onClick.AddListener(this.ShowSettings);
         this.QuitButton.onClick.AddListener(this.Quit);
 
+        this.MusicSlider.onValueChanged.AddListener(this.MusicChanged);
+        this.SfxSlider.onValueChanged.AddListener(this.SfxChanged);
+        this.SettingsBackButton.onClick.AddListener(this.ExitSettings);
+
 #if UNITY_EDITOR
         this.DebugGroup.SetActive(true);
         this.SpatulasButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.Spatulas); });
@@ -65,6 +82,8 @@ public class MainMenuController : MonoBehaviour
 #else
         this.DebugGroup.SetActive(false);
 #endif
+
+        this.ExitSettings();
     }
 
     // Update is called once per frame
@@ -108,11 +127,29 @@ public class MainMenuController : MonoBehaviour
 
     private void ShowSettings()
     {
+        this.MainMenuButtons.SetActive(false);
+        this.Settings.SetActive(true);
+        this.EventSystem.SetSelectedGameObject(this.MusicSlider.gameObject);
     }
 
     private void Quit()
     {
         Application.Quit();
+    }
+
+    private void MusicChanged(float value)
+    {
+        AudioController.Instance.SetMusicVolume(value);
+    }
+    private void SfxChanged(float value)
+    {
+        AudioController.Instance.SetSFXVolume(value);
+    }
+    private void ExitSettings()
+    {
+        this.Settings.SetActive(false);
+        this.MainMenuButtons.SetActive(true);
+        this.EventSystem.SetSelectedGameObject(this.PlayGameButton.gameObject);
     }
 
     // Input handling

@@ -99,11 +99,11 @@ public class ContestController : MonoBehaviour
 
         if (this._currentMinigame.PlayerFinished)
         {
-            this._finishText.GetComponent<FinishText>().SetText("Finish!");
+            this._finishText.GetComponent<FinishText>().SetText("FINISH!");
         } else
         {
             AudioController.Instance.LoadNewSFXAndPlay("Lose", null, 1f);
-            this._finishText.GetComponent<FinishText>().SetText("Fail!");
+            this._finishText.GetComponent<FinishText>().SetText("FAIL!");
         }
 
         this.StartCoroutine(this.ContinueAfterDelay(this._currentMinigame.PlayerFinished, 2f));
