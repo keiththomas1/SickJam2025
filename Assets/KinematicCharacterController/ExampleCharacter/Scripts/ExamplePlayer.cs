@@ -16,12 +16,6 @@ namespace KinematicCharacterController.Examples
 
         private PlayerCharacterInputs _characterInputs = new PlayerCharacterInputs();
 
-        private void Awake()
-        {
-            this._characterInputs.CrouchDown = false;
-            this._characterInputs.CrouchUp = true;
-        }
-
         private void Update()
         {
             HandleCharacterInput();
