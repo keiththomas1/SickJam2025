@@ -1,3 +1,4 @@
+using DG.Tweening;
 using KinematicCharacterController;
 using KinematicCharacterController.Examples;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using UnityEngine.TextCore.Text;
 
 public class MinigameController : MonoBehaviour
 {
+    [SerializeField]
+    private string MinigameTitle;
     [SerializeField]
     private AudioClip MinigameMusic;
     [SerializeField]
@@ -28,6 +31,10 @@ public class MinigameController : MonoBehaviour
     public FinishEvent OnCharacterFinished = new FinishEvent();
     public UnityEvent OnAllFinished = new UnityEvent();
 
+    public string Title
+    {
+        get { return this.MinigameTitle; }
+    }
     public bool PlayerFinished
     {
         get { return this._playerFinished; }
@@ -36,6 +43,7 @@ public class MinigameController : MonoBehaviour
     void Start()
     {
         this.FinishLine.OnTriggered.AddListener(this.CharacterFinished);
+
 
         foreach (var npc in this.NPCs)
         {
@@ -118,6 +126,8 @@ public class MinigameController : MonoBehaviour
 
         this._finishCount--;
         this.OnCharacterFinished.Invoke(collider.gameObject.name);
+
+        this.FinishLine.GetComponent<FinishLine>().Flicker();
 
         if (this._finishCount == 0)
         {

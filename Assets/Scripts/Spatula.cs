@@ -14,18 +14,25 @@ public class Spatula : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            Vector3 linearVelocity = this.Rigidbody.GetPointVelocity(collider.transform.position);
-            Vector3 finalVelocity = new Vector3(linearVelocity.x * this.ForceMultiplier, 22f, linearVelocity.z * this.ForceMultiplier);
-
-            collider.gameObject.GetComponent<SickCharacterController>().AddVelocity(finalVelocity); // * velocityTowardsCollision );
-
+            float localForceMultiplier = 0.5f;
             if (collider.gameObject.name == "Player")
             {
                 if (AudioController.Instance != null)
                 {
                     AudioController.Instance.LoadNewSFXAndPlay("Hit_loud", null, 0.8f);
                 }
+
+                localForceMultiplier = 1f;
             }
+
+            Vector3 linearVelocity = this.Rigidbody.GetPointVelocity(collider.transform.position);
+            Vector3 finalVelocity = new Vector3(
+                linearVelocity.x * this.ForceMultiplier * localForceMultiplier, 
+                22f * localForceMultiplier, 
+                linearVelocity.z * this.ForceMultiplier * localForceMultiplier);
+
+            collider.gameObject.GetComponent<SickCharacterController>().AddVelocity(finalVelocity); // * velocityTowardsCollision );
+
         }
     }
 }
