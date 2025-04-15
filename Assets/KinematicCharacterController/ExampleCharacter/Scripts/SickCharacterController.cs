@@ -70,6 +70,7 @@ namespace KinematicCharacterController.Examples
         public Transform MeshRoot;
         public Transform CameraFollowPoint;
         public float CrouchedCapsuleHeight = 1f;
+        public Animator animator;
 
         public CharacterState CurrentCharacterState { get; private set; }
 
@@ -306,6 +307,8 @@ namespace KinematicCharacterController.Examples
 
                             // Smooth movement Velocity
                             currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-StableMovementSharpness * deltaTime));
+
+                            animator.SetFloat("Speed", currentVelocity.magnitude);
                         }
                         // Air movement
                         else
