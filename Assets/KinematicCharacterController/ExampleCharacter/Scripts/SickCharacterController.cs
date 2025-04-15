@@ -369,11 +369,11 @@ namespace KinematicCharacterController.Examples
                                     jumpDirection = Motor.GroundingStatus.GroundNormal;
                                 }
 
-                                var volume = this.IsNPC ? 0.7f : 1f;
-                                var pitch = this.IsNPC ? 0.75f : 1f;
+                                var volume = this.IsNPC ? 0.5f : .9f;
+                                var pitch = this.IsNPC ? 0.7f : 1f;
                                 if (AudioController.Instance != null)
                                 {
-                                    AudioController.Instance.LoadNewSFXAndPlay("Jump", null, volume, pitch);
+                                    AudioController.Instance.LoadNewSFXAndPlay("Jump_loud", null, volume, pitch);
                                 }
 
                                 // Makes the character skip ground probing/snapping on its next update. 
