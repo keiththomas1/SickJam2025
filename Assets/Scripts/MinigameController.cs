@@ -3,7 +3,9 @@ using KinematicCharacterController;
 using KinematicCharacterController.Examples;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.TextCore.Text;
 
 public class MinigameController : MonoBehaviour
@@ -24,6 +26,7 @@ public class MinigameController : MonoBehaviour
 
     private bool _playerFinished = false;
     private int _finishCount;
+    private AudioSource _crowdAmbient = null;
 
     public class FinishEvent : UnityEvent<string> { }
     public FinishEvent OnCharacterFinished = new FinishEvent();
@@ -63,8 +66,17 @@ public class MinigameController : MonoBehaviour
 
     private void RespawnIfOutOfBounds(SickCharacterController sickCharacterController)
     {
-        if (sickCharacterController.transform.position.y < -7f)
+        if (sickCharacterController.transform.position.y < -7f) // Death
         {
+            if (sickCharacterController.gameObject.name == "Player")
+            {
+                AudioController.Instance.LoadNewSFXAndPlay("Death", null, 1f);
+            }
+            else
+            {
+                AudioController.Instance.LoadNewSFXAndPlay("Death", null, 0.3f, 0.7f);
+            }
+
             sickCharacterController.GetComponent<KinematicCharacterMotor>().SetPosition(this.RespawnPosition.transform.position);
         }   
     }
@@ -97,7 +109,8 @@ public class MinigameController : MonoBehaviour
 
         if (MusicController.Instance != null)
         {
-            MusicController.Instance.PlayMusic(this.MinigameMusic, 0.7f);
+            MusicController.Instance.PlayMusic(this.MinigameMusic, 1f);
+            this._crowdAmbient = AudioController.Instance.LoadNewAmbientAndPlay("Crowd", null, 1f);
         }
     }
 
@@ -125,7 +138,7 @@ public class MinigameController : MonoBehaviour
 
         if (this._finishCount == 0)
         {
-            this.OnAllFinished.Invoke();
+            this.Cleanup();
 
             this.Player.CanMove = false;
             foreach (var character in NPCs)
@@ -139,6 +152,17 @@ public class MinigameController : MonoBehaviour
     private void OnSkipGame()
     {
         this._playerFinished = true;
+        this.Cleanup();
+    }
+
+    private void Cleanup()
+    {
+        if (this._crowdAmbient != null)
+        {
+            this._crowdAmbient.Stop();
+            this._crowdAmbient.volume = 0;
+        }
+
         this.OnAllFinished.Invoke();
     }
 }

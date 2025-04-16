@@ -46,6 +46,7 @@ public class MainMenuController : MonoBehaviour
 
     private bool _videoPlaying = true;
     private string _currentControlScheme;
+    private float _previousSFXVolume = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -87,7 +88,10 @@ public class MainMenuController : MonoBehaviour
             this.EndVideo(null);
         }
 
-        this.ExitSettings();
+        this.MusicSlider.value = 0.5f;
+        this.SfxSlider.value = 0.5f;
+
+        this.ShowMainMenuButtons();
     }
 
     // Update is called once per frame
@@ -113,6 +117,7 @@ public class MainMenuController : MonoBehaviour
     {
         MusicController.Instance.FadeOutCurrentMusic(2f);
         ContestController.Instance.SetupGames();
+        AudioController.Instance.LoadNewSFXAndPlay("Click", null, 1f);
     }
      
     private void EndVideo(VideoPlayer source)
@@ -124,7 +129,7 @@ public class MainMenuController : MonoBehaviour
             this.Canvas.enabled = true;
             this.StartCoroutine(this.DelayCanvas());
 
-            MusicController.Instance.PlayMusic("MainMenuMusic", 0.7f);
+            MusicController.Instance.PlayMusic("MainMenuMusic", 0.6f);
 
             this._videoPlaying = false;
         }
@@ -142,22 +147,36 @@ public class MainMenuController : MonoBehaviour
         this.MainMenuButtons.SetActive(false);
         this.Settings.SetActive(true);
         this.EventSystem.SetSelectedGameObject(this.MusicSlider.gameObject);
+        AudioController.Instance.LoadNewSFXAndPlay("Click", null, 1f);
     }
 
     private void Quit()
     {
+        AudioController.Instance.LoadNewSFXAndPlay("Click", null, 1f);
         Application.Quit();
     }
 
     private void MusicChanged(float value)
     {
         AudioController.Instance.SetMusicVolume(value);
+        AudioController.Instance.SetAmbientVolume(value);
     }
     private void SfxChanged(float value)
     {
         AudioController.Instance.SetSFXVolume(value);
+
+        if (Mathf.Abs(this._previousSFXVolume - value) > 0.05f) {
+            this._previousSFXVolume = value;
+            AudioController.Instance.LoadNewSFXAndPlay("Click", null, 1f);
+        }
     }
     private void ExitSettings()
+    {
+        AudioController.Instance.LoadNewSFXAndPlay("Click", null, 1f);
+        this.ShowMainMenuButtons();
+    }
+
+    private void ShowMainMenuButtons()
     {
         this.Settings.SetActive(false);
         this.MainMenuButtons.SetActive(true);

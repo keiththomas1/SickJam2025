@@ -239,6 +239,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SFXSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 5686843313620104122, guid: 3f114ffee046d8c40b2a81f7978a182e, type: 3}
+      propertyPath: m_Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686843313620104122, guid: 3f114ffee046d8c40b2a81f7978a182e, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6305895283998818524, guid: 3f114ffee046d8c40b2a81f7978a182e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5

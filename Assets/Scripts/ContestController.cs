@@ -123,7 +123,7 @@ public class ContestController : MonoBehaviour
             this.MinigameOver();
         } else
         {
-            AudioController.Instance.LoadNewSFXAndPlay("Win", null, 0.3f, 0.7f);
+            AudioController.Instance.LoadNewSFXAndPlay("NPCWin", null, 1f);
         }
 
         this._finishedThisRound++;
