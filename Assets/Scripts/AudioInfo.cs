@@ -12,4 +12,9 @@ public class AudioInfo : MonoBehaviour
     {
         get; set;
     } = 1f;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 }

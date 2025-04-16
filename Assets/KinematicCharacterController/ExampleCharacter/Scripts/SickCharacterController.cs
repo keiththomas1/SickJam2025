@@ -4,8 +4,6 @@ using UnityEngine;
 using KinematicCharacterController;
 using System;
 
-namespace KinematicCharacterController.Examples
-{
     public enum CharacterState
     {
         Default,
@@ -90,6 +88,8 @@ namespace KinematicCharacterController.Examples
         public bool IsNPC { get; set; } = false;
         public bool CanMove { get; set; } = true;
 
+        private Vector3 _currentVelocity = Vector3.zero;
+
         private void Awake()
         {
             // Handle initial state
@@ -97,6 +97,15 @@ namespace KinematicCharacterController.Examples
 
             // Assign the characterController to the motor
             Motor.CharacterController = this;
+        }
+
+        private void LateUpdate()
+        {
+            if (this._currentVelocity != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(this._currentVelocity);
+                this.MeshRoot.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+            }
         }
 
         /// <summary>
@@ -381,6 +390,8 @@ namespace KinematicCharacterController.Examples
                         break;
                     }
             }
+
+            this._currentVelocity = currentVelocity;
         }
 
         /// <summary>
@@ -485,4 +496,3 @@ namespace KinematicCharacterController.Examples
         {
         }
     }
-}

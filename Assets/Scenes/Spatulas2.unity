@@ -10663,14 +10663,6 @@ PrefabInstance:
       propertyPath: CharacterCamera
       value: 
       objectReference: {fileID: 17924871}
-    - target: {fileID: 3198630328084398289, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 17924871}
-    - target: {fileID: 3198630328084398289, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
-      propertyPath: m_UIInputModule
-      value: 
-      objectReference: {fileID: 821006767}
     - target: {fileID: 3465040285238881938, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
       propertyPath: destination
       value: 

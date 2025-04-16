@@ -109,6 +109,12 @@ public class AudioController : MonoBehaviour
     }
 
     // Music
+    public AudioSource LoadNewMusicAndPlay(
+        string clipName, float volumeLevel = DEFAULT_VOLUME_LEVEL)
+    {
+        var audioClip = Resources.Load<AudioClip>(Path.Join(AMBIENT_PATH, clipName));
+        return this.CreateNewMusicAndPlay(audioClip, volumeLevel);
+    }
 
     public AudioSource CreateNewMusicAndPlay(
         AudioClip audioClip, float volumeLevel = DEFAULT_VOLUME_LEVEL, bool looping = true)

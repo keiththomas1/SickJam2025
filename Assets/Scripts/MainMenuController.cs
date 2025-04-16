@@ -50,23 +50,14 @@ public class MainMenuController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        this.VideoPlayer.loopPointReached += this.VideoEnded;
+        this.VideoPlayer.loopPointReached += this.EndVideo;
 
         this._currentControlScheme = this.PlayerInput.currentControlScheme;
         this.Canvas.enabled = false;
 
         this._videoPlaying = true;
 
-        if (AudioController.Instance == null)
-        {
-            GameObject.Instantiate(Resources.Load("AudioController") as GameObject);
-        }
-        if (ContestController.Instance == null)
-        {
-            GameObject.Instantiate(Resources.Load("ContestController") as GameObject);
-        }
-
-        this.PlayGameButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(); });
+        this.PlayGameButton.onClick.AddListener(this.PlayGame);
         this.SettingsButton.onClick.AddListener(this.ShowSettings);
         this.QuitButton.onClick.AddListener(this.Quit);
 
@@ -78,10 +69,23 @@ public class MainMenuController : MonoBehaviour
         this.DebugGroup.SetActive(true);
         this.SpatulasButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.Spatulas); });
         this.MeatballsButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.Meatballs); });
-        this.GreaseFryersButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.GreaseFryers); });
+        this.GreaseFryersButton.onClick.AddListener(() => { ContestController.Instance.SetupGames(MinigameType.SmashBurger); });
 #else
         this.DebugGroup.SetActive(false);
 #endif
+
+        if (AudioController.Instance == null)
+        {
+            GameObject.Instantiate(Resources.Load("AudioController") as GameObject);
+        }
+        if (ContestController.Instance == null)
+        {
+            GameObject.Instantiate(Resources.Load("ContestController") as GameObject);
+        }
+        else // We are returning to the main menu so no need to show boot video
+        {
+            this.EndVideo(null);
+        }
 
         this.ExitSettings();
     }
@@ -104,8 +108,14 @@ public class MainMenuController : MonoBehaviour
             }
         }
     }
+
+    private void PlayGame()
+    {
+        MusicController.Instance.FadeOutCurrentMusic(2f);
+        ContestController.Instance.SetupGames();
+    }
      
-    private void VideoEnded(VideoPlayer source)
+    private void EndVideo(VideoPlayer source)
     {
         if (this._videoPlaying)
         {
@@ -114,13 +124,15 @@ public class MainMenuController : MonoBehaviour
             this.Canvas.enabled = true;
             this.StartCoroutine(this.DelayCanvas());
 
+            MusicController.Instance.PlayMusic("MainMenuMusic", 0.7f);
+
             this._videoPlaying = false;
         }
     }
 
     private IEnumerator DelayCanvas()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
 
         this.EventSystem.SetSelectedGameObject(this.PlayGameButton.gameObject);
     }
@@ -156,17 +168,14 @@ public class MainMenuController : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        this.VideoEnded(null);
-    }
-    public void OnAttack(InputValue value)
-    {
+        this.EndVideo(null);
     }
     public void OnInteract(InputValue value)
     {
-        this.VideoEnded(null);
+        this.EndVideo(null);
     }
-    public void OnCrouch(InputValue value)
+    public void OnNext(InputValue value)
     {
-        this.VideoEnded(null);
+        this.EndVideo(null);
     }
 }

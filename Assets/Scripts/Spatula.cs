@@ -28,10 +28,10 @@ public class Spatula : MonoBehaviour
             Vector3 linearVelocity = this.Rigidbody.GetPointVelocity(collider.transform.position);
             Vector3 finalVelocity = new Vector3(
                 linearVelocity.x * this.ForceMultiplier * localForceMultiplier, 
-                22f * localForceMultiplier, 
+                (linearVelocity.y + 5f) * this.ForceMultiplier * localForceMultiplier, // Gives a little push upwards for funny smacks
                 linearVelocity.z * this.ForceMultiplier * localForceMultiplier);
 
-            collider.gameObject.GetComponent<SickCharacterController>().AddVelocity(finalVelocity); // * velocityTowardsCollision );
+            collider.gameObject.GetComponent<SickCharacterController>().AddVelocity(finalVelocity);
 
         }
     }

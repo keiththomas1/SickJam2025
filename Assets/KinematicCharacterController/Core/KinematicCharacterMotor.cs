@@ -529,6 +529,7 @@ namespace KinematicCharacterController
         public const float ExtraStepHeightPadding = 0.01f;
 #pragma warning restore 0414 
 
+
         private void OnEnable()
         {
             KinematicCharacterSystem.EnsureCreation();

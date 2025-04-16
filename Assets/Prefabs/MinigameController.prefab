@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7471221212286697269}
   - component: {fileID: 8535197205076655961}
+  - component: {fileID: 3198630328084398289}
   m_Layer: 0
   m_Name: MinigameController
   m_TagString: Untagged
@@ -357,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47330024e07bdc54097d94e33efc1a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinigameTitle: 
   MinigameMusic: {fileID: 8300000, guid: b0678c2deb4972c4695e972b1cfaa80b, type: 3}
   Player: {fileID: 4484193808981706555}
   NPCs:
@@ -390,6 +392,36 @@ MonoBehaviour:
   OnAllFinished:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3198630328084398289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6472354064812894453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &7444638846556471262
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,6 @@ using UnityEngine.TextCore.Text;
 public class MinigameController : MonoBehaviour
 {
     [SerializeField]
-    private string MinigameTitle;
-    [SerializeField]
     private AudioClip MinigameMusic;
     [SerializeField]
     private SickCharacterController Player;
@@ -31,10 +29,6 @@ public class MinigameController : MonoBehaviour
     public FinishEvent OnCharacterFinished = new FinishEvent();
     public UnityEvent OnAllFinished = new UnityEvent();
 
-    public string Title
-    {
-        get { return this.MinigameTitle; }
-    }
     public bool PlayerFinished
     {
         get { return this._playerFinished; }
@@ -140,5 +134,11 @@ public class MinigameController : MonoBehaviour
                 character.CanMove = false;
             }
         }
+    }
+
+    private void OnSkipGame()
+    {
+        this._playerFinished = true;
+        this.OnAllFinished.Invoke();
     }
 }

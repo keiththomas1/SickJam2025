@@ -9,7 +9,10 @@ public enum MinigameType
 {
     Spatulas,
     Meatballs,
-    GreaseFryers,
+    SmashBurger,
+    Spatulas2,
+    Meatballs2,
+    SmashBurger2,
     None
 }
 
@@ -19,6 +22,7 @@ public enum MinigameType
 public class ContestController : MonoBehaviour
 {
     private MinigameController _currentMinigame;
+    private MinigameType _currentMinigameType = MinigameType.None;
     private CountdownText _countdown;
     private FinishText _finishText;
     private FinishedPlayersText _finishedPlayersText;
@@ -78,7 +82,7 @@ public class ContestController : MonoBehaviour
             this._currentMinigame.OnAllFinished.AddListener(this.MinigameOver);
 
             this._countdown = Instantiate(Resources.Load("CountdownText") as GameObject).GetComponent<CountdownText>();
-            this._countdown.SetText(this._currentMinigame.Title, this.PlayersInRound[this._round]);
+            this._countdown.SetText(this.GetMinigameName(this._currentMinigameType), this.PlayersInRound[this._round]);
             this._countdown.GetComponent<CountdownText>().OnFinished.AddListener(this.StartMinigame);
         }
     }
@@ -91,9 +95,14 @@ public class ContestController : MonoBehaviour
         {
             MinigameType.Spatulas,
             MinigameType.Meatballs,
-            MinigameType.GreaseFryers
+            MinigameType.SmashBurger
         };
         this._gameQueue = minigames.OrderBy(i => Guid.NewGuid()).ToList();
+
+        // Make sure the "level 2" order is same as first order
+        this._gameQueue.Add(this.GetSecondLevel(this._gameQueue[0]));
+        this._gameQueue.Add(this.GetSecondLevel(this._gameQueue[1]));
+        this._gameQueue.Add(this.GetSecondLevel(this._gameQueue[2]));
 
         if (this._finishedPlayersText == null)
         {
@@ -144,7 +153,7 @@ public class ContestController : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
 
-        MusicController.Instance.FadeOutCurrentMusic(1f);
+        MusicController.Instance.FadeOutCurrentMusic(2f);
 
         if (playerFinished)
         {
@@ -168,8 +177,8 @@ public class ContestController : MonoBehaviour
             return;
         }
 
-        var gameToLoad = (optionalStartGame == MinigameType.None) ? this._gameQueue[0] : optionalStartGame;
-        SceneManager.LoadScene(this.GetMinigame(gameToLoad), LoadSceneMode.Single);
+        this._currentMinigameType = (optionalStartGame == MinigameType.None) ? this._gameQueue[0] : optionalStartGame;
+        SceneManager.LoadScene(this.GetMinigameSceneName(this._currentMinigameType), LoadSceneMode.Single);
 
         this._gameQueue.RemoveAt(0);
     }
@@ -197,7 +206,7 @@ public class ContestController : MonoBehaviour
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 
-    private string GetMinigame(MinigameType minigameType)
+    private string GetMinigameSceneName(MinigameType minigameType)
     {
         switch (minigameType)
         {
@@ -205,12 +214,56 @@ public class ContestController : MonoBehaviour
                 return "Spatulas";
             case MinigameType.Meatballs:
                 return "Meatballs";
-            case MinigameType.GreaseFryers:
-                return "GreaseFryers";
+            case MinigameType.SmashBurger:
+                return "SmashBurger";
+            case MinigameType.Spatulas2:
+                return "Spatulas2";
+            case MinigameType.Meatballs2:
+                return "Meatballs2";
+            case MinigameType.SmashBurger2:
+                return "SmashBurger2";
             case MinigameType.None:
             default:
                 Debug.LogError("Trying to load none or unknown type " + minigameType.ToString());
                 return "None";
+        }
+    }
+
+    private string GetMinigameName(MinigameType minigameType)
+    {
+        switch (minigameType)
+        {
+            case MinigameType.Spatulas:
+                return "SPINNING SPATS OF PAIN";
+            case MinigameType.Meatballs:
+                return "MEATBALL HILL";
+            case MinigameType.SmashBurger:
+                return "SMASH BURGERS";
+            case MinigameType.Spatulas2:
+                return "SPINNING SPATS OF DEATH";
+            case MinigameType.Meatballs2:
+                return "MEATBALL MOUNTAIN";
+            case MinigameType.SmashBurger2:
+                return "SMASH BURGERS 2";
+            case MinigameType.None:
+            default:
+                Debug.LogError("Trying to load none or unknown type " + minigameType.ToString());
+                return "None";
+        }
+    }
+
+    private MinigameType GetSecondLevel(MinigameType minigameType)
+    {
+        switch (minigameType)
+        {
+            case MinigameType.Spatulas:
+                return MinigameType.Spatulas2;
+            case MinigameType.Meatballs:
+                return MinigameType.Meatballs2;
+            case MinigameType.SmashBurger:
+                return MinigameType.SmashBurger2;
+            default:
+                return MinigameType.None;
         }
     }
 }

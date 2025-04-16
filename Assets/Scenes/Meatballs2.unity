@@ -29290,7 +29290,7 @@ PrefabInstance:
       objectReference: {fileID: 1937770511}
     - target: {fileID: 8535197205076655961, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
       propertyPath: MinigameTitle
-      value: MEATBALL HILL
+      value: MEATBALL MOUNTAIN
       objectReference: {fileID: 0}
     - target: {fileID: 8643020470406927361, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
       propertyPath: destination

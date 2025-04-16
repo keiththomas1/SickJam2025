@@ -847,7 +847,7 @@ MonoBehaviour:
   BonusOrientationMethod: 0
   BonusOrientationSharpness: 10
   Gravity: {x: 0, y: -30, z: 0}
-  MeshRoot: {fileID: 0}
+  MeshRoot: {fileID: 4610006889747509850}
   CameraFollowPoint: {fileID: 0}
   animator: {fileID: 1570259866839525237}
 --- !u!114 &6158354430832735105
