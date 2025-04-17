@@ -41,6 +41,7 @@ public class MinigameController : MonoBehaviour
     {
         this.FinishLine.OnTriggered.AddListener(this.CharacterFinished);
 
+        this.Player.OnSkipGame.AddListener(this.SkipGame);
 
         foreach (var npc in this.NPCs)
         {
@@ -68,13 +69,16 @@ public class MinigameController : MonoBehaviour
     {
         if (sickCharacterController.transform.position.y < -7f) // Death
         {
-            if (sickCharacterController.gameObject.name == "Player")
+            if (AudioController.Instance != null)
             {
-                AudioController.Instance.LoadNewSFXAndPlay("Death", null, 1f);
-            }
-            else
-            {
-                AudioController.Instance.LoadNewSFXAndPlay("Death", null, 0.3f, 0.7f);
+                if (sickCharacterController.gameObject.name == "Player")
+                {
+                    AudioController.Instance.LoadNewSFXAndPlay("Death", null, 1f);
+                }
+                else
+                {
+                    AudioController.Instance.LoadNewSFXAndPlay("Death", null, 0.3f, 0.7f);
+                }
             }
 
             sickCharacterController.GetComponent<KinematicCharacterMotor>().SetPosition(this.RespawnPosition.transform.position);
@@ -149,7 +153,7 @@ public class MinigameController : MonoBehaviour
         }
     }
 
-    private void OnSkipGame()
+    private void SkipGame()
     {
         this._playerFinished = true;
         this.Cleanup();

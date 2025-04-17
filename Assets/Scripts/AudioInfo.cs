@@ -15,6 +15,6 @@ public class AudioInfo : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this);
     }
 }

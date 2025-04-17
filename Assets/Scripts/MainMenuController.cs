@@ -159,11 +159,11 @@ public class MainMenuController : MonoBehaviour
     private void MusicChanged(float value)
     {
         AudioController.Instance.SetMusicVolume(value);
-        AudioController.Instance.SetAmbientVolume(value);
     }
     private void SfxChanged(float value)
     {
         AudioController.Instance.SetSFXVolume(value);
+        AudioController.Instance.SetAmbientVolume(value);
 
         if (Mathf.Abs(this._previousSFXVolume - value) > 0.05f) {
             this._previousSFXVolume = value;

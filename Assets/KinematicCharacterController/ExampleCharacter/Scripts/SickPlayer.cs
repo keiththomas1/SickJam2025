@@ -46,4 +46,8 @@ public class SickPlayer : MonoBehaviour
         this._characterInputs.MoveAxisForward = value.Get<Vector2>().y;
         this._characterInputs.MoveAxisRight = value.Get<Vector2>().x;
     }
+    private void OnSkipGame()
+    {
+        this.Character.SkipGame();
+    }
 }

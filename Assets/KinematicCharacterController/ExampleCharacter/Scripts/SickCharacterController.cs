@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using System;
+using UnityEngine.Events;
 
-    public enum CharacterState
+public enum CharacterState
     {
         Default,
     }
@@ -90,6 +91,8 @@ using System;
 
         private Vector3 _currentVelocity = Vector3.zero;
 
+        public UnityEvent OnSkipGame = new UnityEvent();
+
         private void Awake()
         {
             // Handle initial state
@@ -106,6 +109,11 @@ using System;
                 Quaternion targetRotation = Quaternion.LookRotation(this._currentVelocity);
                 this.MeshRoot.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
             }
+        }
+
+        public void SkipGame()
+        {
+            this.OnSkipGame.Invoke();
         }
 
         /// <summary>

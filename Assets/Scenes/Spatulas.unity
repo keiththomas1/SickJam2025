@@ -10668,6 +10668,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 17924871}
     - target: {fileID: 3198630328084398289, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198630328084398289, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 821006767}
@@ -10695,6 +10699,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -57.285
       objectReference: {fileID: 0}
+    - target: {fileID: 4666060667070696632, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
+      propertyPath: PlayerInput
+      value: 
+      objectReference: {fileID: 6505057340831361184}
     - target: {fileID: 4666060667070696632, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
       propertyPath: CharacterCamera
       value: 
@@ -10751,6 +10759,10 @@ PrefabInstance:
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 821006767}
+    - target: {fileID: 6764917219655882470, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7471221212286697269, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10894,6 +10906,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6131113337736265504, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
   m_PrefabInstance: {fileID: 5075424946582146470}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6505057340831361184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6764917219655882470, guid: 42dd2b25822bdf64cac849e6c5a57c71, type: 3}
+  m_PrefabInstance: {fileID: 5075424946582146470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &7264738965930719980
 Camera:
   m_ObjectHideFlags: 0
