@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScrollingTexture : MonoBehaviour
 {
@@ -10,7 +11,13 @@ public class ScrollingTexture : MonoBehaviour
 
     void Start()
     {
-        material = GetComponent<Renderer>().material;
+        if (this.GetComponent<Renderer>())
+        {
+            material = GetComponent<Renderer>().material;
+        } else if (this.GetComponent<Image>())
+        {
+            material = GetComponent<Image>().material;
+        }
         offset = material.GetTextureOffset("_BaseMap");
     }
 

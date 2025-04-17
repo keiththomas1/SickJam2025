@@ -522,7 +522,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8acd9913a154a0c41aa3ee8c6cbe3e6f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 928.95013
+      value: 1767.4569
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8acd9913a154a0c41aa3ee8c6cbe3e6f, type: 3}
       propertyPath: m_LocalScale.y
@@ -538,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8acd9913a154a0c41aa3ee8c6cbe3e6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 2.3824
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8acd9913a154a0c41aa3ee8c6cbe3e6f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8acd9913a154a0c41aa3ee8c6cbe3e6f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 45ef54091010b4c418acac6a19f25c9b, type: 2}
     - target: {fileID: 919132149155446097, guid: 8acd9913a154a0c41aa3ee8c6cbe3e6f, type: 3}
       propertyPath: m_Name
       value: Spatuler

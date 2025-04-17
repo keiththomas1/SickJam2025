@@ -30,6 +30,7 @@ public class ContestController : MonoBehaviour
     private List<MinigameType> _gameQueue;
     private int _round = 1;
     private int _finishedThisRound = 0;
+    private MinigameType _optionalStartGame = MinigameType.None;
 
     private Dictionary<int, int> PlayersInRound = new Dictionary<int, int>()
     {
@@ -85,6 +86,13 @@ public class ContestController : MonoBehaviour
             this._countdown.SetText(this.GetMinigameName(this._currentMinigameType), this.PlayersInRound[this._round]);
             this._countdown.GetComponent<CountdownText>().OnFinished.AddListener(this.StartMinigame);
         }
+
+        var introCutscene = GameObject.FindFirstObjectByType<IntroCutsceneController>();
+
+        if (introCutscene != null)
+        {
+            introCutscene.OnFinished.AddListener(() => { this.LoadNextMinigame(this._optionalStartGame); });
+        }
     }
 
     public void SetupGames(MinigameType optionalStartGame = MinigameType.None)
@@ -111,7 +119,8 @@ public class ContestController : MonoBehaviour
             this._finishedPlayersText.gameObject.SetActive(false);
         }
 
-        this.LoadNextMinigame(optionalStartGame);
+        this._optionalStartGame = optionalStartGame;
+        SceneManager.LoadScene("IntroCutscene", LoadSceneMode.Single);
     }
 
     private void CharacterFinished(string name)

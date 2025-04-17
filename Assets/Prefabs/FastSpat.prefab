@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: fa7583f4941f3ec4695e3315f9ab341c, type: 2}
+    - target: {fileID: 3849177844572261322, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5822294
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849177844572261322, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
+      propertyPath: m_Center.y
+      value: 1.1992029
+      objectReference: {fileID: 0}
     - target: {fileID: 4997376146196655662, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
       propertyPath: ForceMultiplier
       value: 1
@@ -68,9 +76,33 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: fa7583f4941f3ec4695e3315f9ab341c, type: 2}
+    - target: {fileID: 8143070255023677021, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1113.0913
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143070255023677021, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8584501131917332987, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
       propertyPath: m_Name
       value: FastSpat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715976821209137887, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2733142
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715976821209137887, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
+      propertyPath: m_Size.z
+      value: 7.0956497
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715976821209137887, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
+      propertyPath: m_Center.y
+      value: 1.2541214
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715976821209137887, guid: bc38414c3a4c96541a3f70d9e9b53757, type: 3}
+      propertyPath: m_Center.z
+      value: 10.77113
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
