@@ -155,8 +155,10 @@ public class MinigameController : MonoBehaviour
 
     private void SkipGame()
     {
+#if UNITY_EDITOR
         this._playerFinished = true;
         this.Cleanup();
+#endif
     }
 
     private void Cleanup()
