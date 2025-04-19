@@ -1258,6 +1258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScrollingUIBackground
       objectReference: {fileID: 0}
+    - target: {fileID: 93363473218508639, guid: 888ac679a2a2e6a4d95a541cb6daf6a6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 422395595163793780, guid: 888ac679a2a2e6a4d95a541cb6daf6a6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1338,10 +1342,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2019714429994015679, guid: 888ac679a2a2e6a4d95a541cb6daf6a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019714429994015679, guid: 888ac679a2a2e6a4d95a541cb6daf6a6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 54240bfc5e5ca45469a66e1b1f6168a2, type: 2}
+    m_RemovedComponents:
+    - {fileID: 2208610707440484285, guid: 888ac679a2a2e6a4d95a541cb6daf6a6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 93363473218508639, guid: 888ac679a2a2e6a4d95a541cb6daf6a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1549937348}
   m_SourcePrefab: {fileID: 100100000, guid: 888ac679a2a2e6a4d95a541cb6daf6a6, type: 3}
 --- !u!1 &1064107923
 GameObject:
@@ -2305,6 +2321,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421927830}
   m_CullTransparentMesh: 1
+--- !u!1 &1549937347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 93363473218508639, guid: 888ac679a2a2e6a4d95a541cb6daf6a6, type: 3}
+  m_PrefabInstance: {fileID: 1010839305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1549937348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549937347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9efd19b6b08a6a4ba58a5620614cb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeedX: 0.1
+  scrollSpeedY: 0.1
 --- !u!1 &1628891265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,7 +2618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: dc5de9bb312c4694f85fb768f067d677, type: 2}
   m_Color: {r: 0.61960787, g: 0.64705884, b: 0.69803923, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

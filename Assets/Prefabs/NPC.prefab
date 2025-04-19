@@ -278,7 +278,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 6ca3f4ec1f80d0f49bd75766adb3a157, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -850,6 +850,9 @@ MonoBehaviour:
   MeshRoot: {fileID: 4610006889747509850}
   CameraFollowPoint: {fileID: 0}
   animator: {fileID: 1570259866839525237}
+  OnSkipGame:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6158354430832735105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,7 +1088,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9152727330751457947}

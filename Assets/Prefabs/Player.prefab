@@ -154,7 +154,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7102390842358038766}
@@ -949,6 +949,9 @@ MonoBehaviour:
   MeshRoot: {fileID: 8816124987702837044}
   CameraFollowPoint: {fileID: 0}
   animator: {fileID: 2277795499716278335}
+  OnSkipGame:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8837595223951271840
 MonoBehaviour:
   m_ObjectHideFlags: 0
