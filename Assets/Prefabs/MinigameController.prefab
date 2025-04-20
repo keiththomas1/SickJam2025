@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47330024e07bdc54097d94e33efc1a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinigameMusic: {fileID: 8300000, guid: 332883e2c18bfc24f95145c90f5fe643, type: 3}
+  MinigameMusic: {fileID: 8300000, guid: d2d35c831bdb957448056a60fe34aff6, type: 3}
   Player: {fileID: 4484193808981706555}
   NPCs:
   - {fileID: 7872507953796302396}

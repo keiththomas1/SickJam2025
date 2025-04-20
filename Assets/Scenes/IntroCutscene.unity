@@ -384,7 +384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1967468523216880966, guid: 7910dbfa05c72d948ad797102a6e3f9a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 97
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 1967468523216880966, guid: 7910dbfa05c72d948ad797102a6e3f9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -898,8 +898,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.7429, y: 56.6731}
-  m_SizeDelta: {x: 707.2068, y: 421.3955}
+  m_AnchoredPosition: {x: 1.7429, y: 44.282963}
+  m_SizeDelta: {x: 707.2068, y: 446.1758}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2062646887
 MonoBehaviour:
@@ -939,7 +939,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: You arrive at the corporate headquarters for a local Chicago fast food
+    restaurant, eager to find work after losing your data entry job to this new 'Internet'
+    phenomenon. Hopefully this is the last time anybody loses their job to a new
+    technology; alas, they said you'd be interviewing for a pretty low level position.
+    There shouldn't be much competition, but perhaps the economy is doing worse than
+    you initially thought...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ef04b62ec40c1784c8faf1170ba97642, type: 2}
   m_sharedMaterial: {fileID: -7592973259253326137, guid: ef04b62ec40c1784c8faf1170ba97642, type: 2}
@@ -966,13 +971,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 31.3
+  m_fontSizeBase: 31.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

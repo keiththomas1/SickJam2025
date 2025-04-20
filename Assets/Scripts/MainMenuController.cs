@@ -129,7 +129,7 @@ public class MainMenuController : MonoBehaviour
             this.Canvas.enabled = true;
             this.StartCoroutine(this.DelayCanvas());
 
-            MusicController.Instance.PlayMusic("MainMenuMusic", 0.6f);
+            MusicController.Instance.PlayMusic("MainMenuMusic_Crushed", 0.6f);
 
             this._videoPlaying = false;
         }
