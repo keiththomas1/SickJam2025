@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IntroCutscene.unity
     guid: 61adae4e5ec5306478442af94cd3c342
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Playground.unity
     guid: a134e2a7a6fce9c48b47276cd5e7a1c5
   - enabled: 1

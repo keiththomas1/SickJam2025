@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 3489377140896945724}
   - component: {fileID: 162946619037912662}
   - component: {fileID: 3094227313379618452}
+  - component: {fileID: 6281052440421231722}
   m_Layer: 5
   m_Name: CountdownText
   m_TagString: Untagged
@@ -139,7 +140,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -158,6 +159,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathTimeInSeconds: 5
+--- !u!114 &6281052440421231722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84735569135548736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 0.63
+  m_ReferenceResolution: {x: 640, y: 600}
+  m_ScreenMatchMode: 2
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!1 &1765269682123225812
 GameObject:
   m_ObjectHideFlags: 0

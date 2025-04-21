@@ -247,9 +247,12 @@ namespace KinematicCharacterController
             InitialSimulationPosition = TransientPosition;
             InitialSimulationRotation = TransientRotation;
 
-            MoverController.UpdateMovement(out _internalTransientPosition, out _internalTransientRotation, deltaTime);
+            if (MoverController != null)
+            {
+                MoverController.UpdateMovement(out _internalTransientPosition, out _internalTransientRotation, deltaTime);
+            }
 
-            if (deltaTime > 0f)
+                if (deltaTime > 0f)
             {
                 Velocity = (TransientPosition - InitialSimulationPosition) / deltaTime;
                                 

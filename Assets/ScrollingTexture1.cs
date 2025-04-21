@@ -18,7 +18,7 @@ public class ScrollingTexture1 : MonoBehaviour
         {
             material = GetComponent<Image>().material;
         }
-        offset = material.GetTextureOffset("_BaseMap");
+        offset = material.GetTextureOffset("_MainTex");
     }
 
     void Update()
